@@ -3,9 +3,9 @@
 ## Challenge 1: 
 Read through the rest of the assignment, decide which technologies to use and explain why you chose what you chose. As a reminder we at Paytm are dealing with millions of concurrent users, just sayin’ :)
 
-I chose the Play framework as the underlying web framework because of how fluid it is in respect to high traffic. The non-blocking IO aspect of the framework backed by Akka (do I need to say more?) really makes this framework standout in 
+_I chose the Play framework as the underlying web framework because of how fluid it is in respect to high traffic. The non-blocking IO aspect of the framework backed by Akka (do I need to say more?) really makes this framework standout in 
 comparison to other non-blocking web frameworks (thinking of nodejs, and other java based frameworks that use netty under the hood). I do love nodejs for rapid prototyping, but Scala takes the cake for long-term sustainable projects 
-(even if javascript can mimic the functional / type-safety of Scala with immutablejs & typescript). AkkaHttp was also an option, but I'm more comfortable with the Play framework.
+(even if javascript can mimic the functional / type-safety of Scala with immutablejs & typescript). AkkaHttp was also an option, but I'm more comfortable with the Play framework._
 
 ## Challenge 2: 
 Create a deployable “Hello World” Server exposing simple REST “Hello World” API. It is going to be a base for your application for this assignment.
