@@ -1,0 +1,53 @@
+.logo {
+    font-family: 'Product Sans', Arial, sans-serif;
+}
+.front-page-logo {
+    font-size: 80px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+}
+.small-logo {
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+.logo .first-char{
+    color: #4285f4;
+}
+.logo .second-char{
+    color: #EA4335;
+}
+.logo .third-char{
+    color: #FBBC05;
+}
+.logo .fifth-char{
+    color: #34A853;
+}
+.vertical-center{
+    transform: translateY(50%);
+}
+.parent-center-content {
+    text-align: center;
+}
+.horizontal-center {
+    margin: auto;
+    width: 100%;
+}
+
+.center.navbar .nav,
+.center.navbar .nav > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+}
+
+.center .navbar-inner {
+    text-align:center;
+}
+
+.center .dropdown-menu {
+    text-align: left;
+}
