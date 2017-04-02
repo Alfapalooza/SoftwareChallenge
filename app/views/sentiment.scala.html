@@ -1,0 +1,36 @@
+@import challenge.sentiments.Sentiment.Sentiment
+@import models.services.twitter.Tweet
+@(searchTerm: String, sentiment: Sentiment, tweets: Seq[Tweet])
+@main {
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <span class="logo small-logo navbar-brand"><a href="/index" class="first-char">N</a><a href="/index" class="second-char">o</a><a href="/index" class="third-char">o</a><a href="/index" class="first-char">d</a><a href="/index" class="fifth-char">l</a><a href="/index" class="second-char">e</a></span>
+    </div>
+  </nav>
+  <div class="container">
+    <h3>General sentiments about <strong>"@searchTerm"</strong> are @sentiment.toString.toLowerCase</h3>
+  </div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <ul class="media-list">
+        @tweets.map { tweet =>
+          <li class="media">
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object" src="@tweet.profileImageUrl" alt="profile">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">Sentiment: @tweet.mainSentiment.toString.toLowerCase</h4>
+              <h5 class="media-heading">@@@tweet.user</h5>
+              @tweet.tweet
+            </div>
+          </li>
+          <hr>
+        }
+        </ul>
+      </div>
+    </div>
+  </div>
+}
