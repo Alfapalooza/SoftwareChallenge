@@ -26,7 +26,7 @@
 
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />
-  <logger name="services" level="INFO" additivity="false">
+  <logger name="challenge.services" level="INFO" additivity="false">
     <!--<appender-ref ref="" />-->
     <appender-ref ref="STDOUT" />
   </logger>

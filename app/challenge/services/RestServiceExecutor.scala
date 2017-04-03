@@ -1,4 +1,4 @@
-package services
+package challenge.services
 
 import challenge.logs.{LogContext, ServiceLog}
 import play.api.libs.json.JsValue
@@ -17,7 +17,6 @@ abstract class RestServiceExecutor (implicit val ec: ExecutionContext) {
     new RestService {
       override protected val requestHolder: WSRequest = requestHook(request)
       override val timeout: FiniteDuration = _timeout.getOrElse(10 seconds)
-
       override protected def wrapRequest[A](body: Option[String])(req: => Future[WSResponse], resp: JsValue => A)(implicit ec: ExecutionContext): Future[A] = {
         ServiceLog.logServiceResponse(serviceName, requestHolder, body)(req.map(responseHook)).map(resp)
       }

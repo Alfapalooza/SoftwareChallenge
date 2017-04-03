@@ -3,12 +3,12 @@ package controllers.handler
 import javax.inject.Singleton
 
 import challenge.logs.ErrorLog
-import challenge.utils.exceptions.ExceptionServiceResponse
 import controllers.Context
 import play.api.http.HttpErrorHandler
 import play.api.libs.json.Json
 import play.api.mvc.Results._
 import play.api.mvc._
+import challenge.services.exceptions.ExceptionServiceResponse
 
 import scala.concurrent._
 
