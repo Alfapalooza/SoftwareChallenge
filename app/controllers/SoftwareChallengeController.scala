@@ -23,7 +23,7 @@ class SoftwareChallengeController @Inject() (modules: ApplicationModulesI)(impli
       errors => Future.successful(BadRequest(views.html.index(alertOpt = Some(Alert(Level.Error, errors.errors.headOption.fold("Couldn't process your search request")(_.message)))))),
       searchTerm => modules.twitterService.search(searchTerm.input).map { twitterTopicSearchResponse =>
         if (twitterTopicSearchResponse.response.tweets.nonEmpty) {
-          val mainSentiment = SentimentAnalyzer.mainSentiment(twitterTopicSearchResponse.response.tweets.flatMap(_.sentiments).toList)
+          val mainSentiment = SentimentAnalyzer.mainSentiment(twitterTopicSearchResponse.response.tweets)
           Ok(views.html.sentiment(searchTerm.input, mainSentiment, twitterTopicSearchResponse.response.tweets))
         } else {
           BadRequest(views.html.index(alertOpt = Some(Alert(Level.Error, s"No results for search: ${searchTerm.input}"))))
