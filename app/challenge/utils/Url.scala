@@ -1,6 +1,6 @@
 package challenge.utils
 
-case class Url private (host: Host, path: Path = Path(Set())){
+case class Url private (host: Host, path: Path = Path(Nil)){
   def /(newPath: String): Url = copy(path = path / newPath)
   def ?&(newQuery: (String, String)): Url = copy(path = path ?& newQuery)
   def ?&(newQuery: Set[(String, String)]): Url = copy(path = path ?& newQuery)
@@ -19,8 +19,8 @@ case class Protocol private (protocol: String) extends AnyVal
 
 case class Port private (port: Int) extends AnyVal
 
-case class Path private (path: Set[String], queries: Queries = Queries(Set())){
-  def /(newPath: String): Path = copy(path = path + newPath)
+case class Path private (path: Seq[String], queries: Queries = Queries(Set.empty[(String, String)])){
+  def /(newPath: String): Path = copy(path = path :+ newPath)
   def ?&(newQuery: (String, String)): Path = copy(queries = queries ?& newQuery)
   def ?&(newQuery: Set[(String, String)]): Path = copy(queries = queries ?& newQuery)
   override def toString: String = path.mkString("/", "/", "") + queries.toString

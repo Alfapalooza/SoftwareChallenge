@@ -7,10 +7,10 @@ import io.igl.jwt.Jwt
 import play.api.mvc._
 import challenge.services.ServiceResponse
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 case class AuthenticatedRequest[A](jwt: Jwt, request: Request[A]) extends WrappedRequest[A](request)
-case class AuthorizedAction(jwtConfig: JwtConfig,  _failSafe: Option[Call] = None,  saltInstructions: Option[Request[_] => String] = Some(r => r.headers.get("Client-IP").orElse(r.headers.get("X-Forwarded-For")).getOrElse(r.remoteAddress))) extends ActionBuilder[AuthenticatedRequest] {
+case class AuthorizedAction(jwtConfig: JwtConfig, _failSafe: Option[Call] = None, saltInstructions: Option[Request[_] => String] = Some(r => r.headers.get("Client-IP").orElse(r.headers.get("X-Forwarded-For")).getOrElse(r.remoteAddress)))(implicit ec: ExecutionContext) extends ActionBuilder[AuthenticatedRequest] {
   lazy val failsafe: Future[Result] = Future.successful(_failSafe.fold(ServiceResponse(play.api.http.Status.FORBIDDEN, play.api.http.Status.FORBIDDEN, "Forbidden").toResult)(Results.Redirect(_).withNewSession))
   override def invokeBlock[A](request: Request[A], block: (AuthenticatedRequest[A]) => Future[Result]): Future[Result] = {
     implicit val lc: LogContext = new LogContext {
@@ -20,7 +20,7 @@ case class AuthorizedAction(jwtConfig: JwtConfig,  _failSafe: Option[Call] = Non
     tokenOpt.fold (failsafe) { token =>
       val configWSalt = saltInstructions.fold(jwtConfig)(instructions => jwtConfig.copy(salt = Some(instructions(request))))
       JsonWebTokenWrapper(configWSalt).decode(token) match {
-        case Some(jwt) => block(AuthenticatedRequest(jwt, request))
+        case Some(jwt) => block(AuthenticatedRequest(jwt, request)).map(_.withHeaders("Cache-Control" ->"no-cache"))
         case _ => failsafe
       }
     }

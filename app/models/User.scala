@@ -9,7 +9,7 @@ case class User (
 ) {
   def withNewPassword(newPassword: String) = copy(password = BCrypt.hashpw(newPassword, BCrypt.gensalt()))
   def validatePassword(attempt: String): Boolean = {
-    BCrypt.checkpw(password, attempt)
+    BCrypt.checkpw(attempt, password)
   }
 }
 

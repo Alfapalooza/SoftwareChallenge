@@ -12,7 +12,7 @@ class ApplicationModules @Inject()(
 	override val configProvider: ConfigProviderI,
 	override val userStorageRedisInterface: UserStorageRedisInterfaceI
 )(implicit val ec: ExecutionContext) extends ApplicationModulesI {
-	override lazy val twitterService = new TwitterService(playComponents.ws, playComponents.configuration)
+	override lazy val twitterService = new TwitterService(playComponents.ws, configProvider.twitterConfig)
 }
 
 trait ApplicationModulesI {

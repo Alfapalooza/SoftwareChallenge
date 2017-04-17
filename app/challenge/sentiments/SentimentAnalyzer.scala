@@ -28,7 +28,6 @@ object SentimentAnalyzer {
     case Some(text) if !text.isEmpty => summarizeSentiments(extractSentiments(input))
     case _ => throw new IllegalArgumentException("input can't be null or empty")
   }
-  def mainSentiment(tweets: List[Tweet]): Sentiment = summarizeSentiments(tweets.flatMap(_.sentiments).toList)
   def mainSentiment(sentiments: List[(Sentence, Sentiment)]): Sentiment = summarizeSentiments(sentiments)
 
   def extractSentiments(text: String): List[(Sentence, Sentiment)] = {

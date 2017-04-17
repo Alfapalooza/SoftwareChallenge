@@ -9,6 +9,7 @@ import play.api.libs.json.Json
 import play.api.mvc.Results._
 import play.api.mvc._
 import challenge.services.exceptions.ExceptionServiceResponse
+import play.api.UsefulException
 
 import scala.concurrent._
 
@@ -20,7 +21,7 @@ class ErrorHandler extends HttpErrorHandler with Context {
       case acceptExtractors.Accepts.Json() =>
         Future.successful(Status(statusCode)(Json.toJson(message)))
       case acceptExtractors.Accepts.Html() =>
-        Future.successful(Status(statusCode).apply(views.html.errors.badRequest(request.method, request.uri, message)))
+        Future.successful(Status(statusCode).apply(views.html.defaultpages.badRequest(request.method, request.uri, message)))
     }
   }
   def onServerError(request: RequestHeader, exception: Throwable): Future[Result] = {
@@ -37,7 +38,8 @@ class ErrorHandler extends HttpErrorHandler with Context {
             Future.successful(ExceptionServiceResponse.apply(ex).toResult)
         }
       case acceptExtractors.Accepts.Html() =>
-        def serverError(ex: Throwable, status: Int) = Status(status).apply(views.html.errors.serverError(ex))
+        def serverError(ex: Throwable, status: Int) =
+          Status(status).apply(views.html.errors.serverError(ex))
         exception match {
           case ex: ExceptionServiceResponse =>
             ErrorLog.logException(ex)
