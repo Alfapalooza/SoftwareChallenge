@@ -1,6 +1,6 @@
-package services
+package challenge.services
 
-import challenge.utils.exceptions.ExceptionServiceResponse
+import challenge.services.exceptions.ExceptionServiceResponse
 
 // Commons codes are between 1 - 1000;
 object CommonsServiceResponseDictionary {

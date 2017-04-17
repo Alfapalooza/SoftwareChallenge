@@ -1,0 +1,17 @@
+@(alertOpt: Option[Alert])
+@main(alertOpt) {
+  <div class="container vertical-center">
+    <div class="panel panel-default" style="padding: 25px;">
+      <form class="form-signin" method="POST" action="/authenticate">
+        <h2 class="form-signin-heading" style="margin-bottom: 10px;">Please sign in</h2>
+        <br>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="email" id="inputEmail" name="username" class="form-control" placeholder="Email address" required autofocus style="margin-bottom: 10px;">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+        <small>We'll automatically create an account for you if the email doesn't exist</small>
+        <button class="btn btn-lg btn-default btn-block" type="submit" style="margin-top: 10px;">Sign in</button>
+      </form>
+    </div>
+  </div>
+}

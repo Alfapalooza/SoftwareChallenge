@@ -1,4 +1,4 @@
-package services
+package challenge.services
 
 import play.api.libs.json.{JsObject, Json, Writes}
 import play.api.mvc.{Result, Results}
@@ -7,7 +7,6 @@ object ServiceResponse {
   implicit val writes = new Writes[ServiceResponse[_]] {
     def writes(o: ServiceResponse[_]): JsObject = o.toJson
   }
-
   def apply[T](
     _status: Int,
     _code: Int,
@@ -28,7 +27,6 @@ trait ServiceResponse[T] {
   def status: Int
   def code: Int
   def response: T
-
   def withMessage(_msg: String): ServiceResponse[T] = {
     val _writes = writes
     val _code = code
@@ -42,7 +40,6 @@ trait ServiceResponse[T] {
       override def response: T = _response
     }
   }
-
   def withCode(_code: Int): ServiceResponse[T] = {
     val _writes = writes
     val _msg = msg
@@ -56,7 +53,6 @@ trait ServiceResponse[T] {
       override def response: T = _response
     }
   }
-
   def withResponse[A](_response: A)(implicit _writes: Writes[A]): ServiceResponse[A] = {
     val _msg = msg
     val _code = code
@@ -69,9 +65,7 @@ trait ServiceResponse[T] {
       override val response: A = _response
     }
   }
-
   def toResult: Result = Results.Status(status)(toJson)
-
   def toJson: JsObject = Json.obj(
     "message"  -> msg,
     "status"   -> status,

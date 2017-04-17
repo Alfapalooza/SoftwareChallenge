@@ -1,7 +1,7 @@
-package guice.modules
+package challenge.guice.modules
 
 import com.google.inject.AbstractModule
-import guice.{PlayModules, PlayModulesI}
+import challenge.guice.{PlayModules, PlayModulesI}
 
 class PlayComponentsModule extends AbstractModule {
 	override def configure(): Unit =

@@ -7,6 +7,7 @@ import edu.stanford.nlp.ling.CoreAnnotations
 import edu.stanford.nlp.neural.rnn.RNNCoreAnnotations
 import edu.stanford.nlp.pipeline.{Annotation, StanfordCoreNLP}
 import edu.stanford.nlp.sentiment.SentimentCoreAnnotations
+import models.services.twitter.Tweet
 
 import scala.collection.convert.wrapAll._
 
@@ -27,7 +28,6 @@ object SentimentAnalyzer {
     case Some(text) if !text.isEmpty => summarizeSentiments(extractSentiments(input))
     case _ => throw new IllegalArgumentException("input can't be null or empty")
   }
-
   def mainSentiment(sentiments: List[(Sentence, Sentiment)]): Sentiment = summarizeSentiments(sentiments)
 
   def extractSentiments(text: String): List[(Sentence, Sentiment)] = {

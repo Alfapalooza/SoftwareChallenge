@@ -1,4 +1,4 @@
-package guice
+package challenge.guice
 
 import akka.actor.ActorSystem
 import com.google.inject.Inject

@@ -1,4 +1,4 @@
-package challenge.utils.exceptions
+package challenge.config.exceptions
 
 import scala.util.control.NoStackTrace
 

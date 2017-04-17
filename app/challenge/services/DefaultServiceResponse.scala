@@ -1,4 +1,4 @@
-package services
+package challenge.services
 
 import play.api.libs.json.{JsString, JsValue, Writes}
 

@@ -1,5 +1,5 @@
 @import play.twirl.api.Html
-@(content: Html)
+@(alertOpt: Option[Alert])(content: Html)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -16,6 +16,16 @@
     <!-- Local scripts and styles -->
   </head>
   <body>
+    <div class="row">
+      <div class="container">
+        @alertOpt.map { alert =>
+          <div class="alert alert-@alert.level.level alert-dismissable" style="margin-top: 25px;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @alert.msg
+          </div>
+        }
+      </div>
+    </div>
     @content
   </body>
 </html>
