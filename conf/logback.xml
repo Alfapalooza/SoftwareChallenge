@@ -26,18 +26,14 @@
 
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />
-  <logger name="challenge.services" level="INFO" additivity="false">
-    <!--<appender-ref ref="" />-->
+  <logger name="services" level="ERROR" additivity="false">
     <appender-ref ref="STDOUT" />
   </logger>
   <logger name="errors" level="ERROR" additivity="false">
-    <!--<appender-ref ref="" />-->
     <appender-ref ref="STDOUT" />
   </logger>
-
-  <root level="WARN">
+  <root level="OFF">
     <appender-ref ref="ASYNCFILE" />
     <appender-ref ref="ASYNCSTDOUT" />
   </root>
-
 </configuration>

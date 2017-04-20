@@ -16,7 +16,7 @@ object TwitterConfig{
 			config.getString(_tokenKey).getOrElse(throw ConfigurationNotFoundException("tokenKey")),
 			config.getString(_tokenSecret).getOrElse(throw ConfigurationNotFoundException("tokenSecret"))
 		)
-		val serviceUrl = Url(Host(Protocol.https, config.getString(_host).getOrElse("api.twitter.com"))) / "1.1" / "search" / "tweets.json"
+		val serviceUrl = Url(Host(Protocol.https, config.getString(_host).getOrElse("api.twitter.com"))) / "1.1"
 		TwitterConfig(consumerKey, requestToken, serviceUrl)
 	}
 }

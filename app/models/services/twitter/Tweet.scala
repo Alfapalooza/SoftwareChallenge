@@ -14,7 +14,7 @@ case class Tweet(id: Long, user: String, profileImageUrl: String, tweet: String)
     "tweet" -> tweet,
     "user" -> user,
     "profileImageUrl" -> profileImageUrl,
-    "sentiment" -> mainSentiment.toString
+    "search" -> mainSentiment.toString
   )
 }
 

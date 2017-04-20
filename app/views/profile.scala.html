@@ -1,0 +1,25 @@
+@(userName: String, searches: Seq[String])
+@main(None) {
+  <nav class="navbar navbar-default">
+    <div class="navbar-header">
+      <span class="logo small-logo navbar-brand"><a href="/index" class="first-char">N</a><a href="/index" class="second-char">o</a><a href="/index" class="third-char">o</a><a href="/index" class="first-char">d</a><a href="/index" class="fifth-char">l</a><a href="/index" class="second-char">e</a></span>
+    </div>
+    <p class="pull-right" style="margin-top: 15px; margin-right: 15px;">Hello, @userName | <a href="/sign-in">Sign-out</a></p>
+  </nav>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Searches</th>
+        </tr>
+      </thead>
+      <tbody>
+        @searches.map { search =>
+          <tr>
+            <th scope="row">@search</th>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

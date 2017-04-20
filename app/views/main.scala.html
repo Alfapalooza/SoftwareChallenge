@@ -28,4 +28,20 @@
     </div>
     @content
   </body>
+  <script>
+    $(document).ready(function() {
+      $("#term").keyup(function(event){
+        if(event.keyCode == 13){
+          $("#search").click();
+        }
+      });
+      $("#search").click(function(){
+        var term = $("#term").val();
+        window.location = window.location.protocol + "//" + window.location.host + "/search?term=" + term;
+      });
+      $("#lucky").click(function(){
+        window.location = window.location.protocol + "//" + window.location.host + "/lucky";
+      });
+    });
+  </script>
 </html>
