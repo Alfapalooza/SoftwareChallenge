@@ -27,7 +27,6 @@
   <logger name="play" level="INFO" />
   <logger name="application" level="INFO" />
   <logger name="services" level="ERROR" additivity="false">
-    <appender-ref ref="ASYNCFILE" />
     <appender-ref ref="STDOUT" />
   </logger>
   <logger name="errors" level="ERROR" additivity="false">
