@@ -5,7 +5,7 @@ import models.User
 import play.api.cache.CacheApi
 import play.cache.NamedCache
 
-class UserStorageRedisInterface @Inject()(@NamedCache("user-storage") cache: CacheApi) extends UserStorageRedisInterfaceI {
+class UserCacheStorageInterface @Inject()(@NamedCache("user-storage") cache: CacheApi) extends UserCacheStorageInterfaceI {
   private val UserBankKey = "users"
   private val UserSequenceKey = "user-sequence"
   override def getUser(id: Long): Option[User] = cache.get[User](id.toString)
@@ -35,29 +35,33 @@ class UserStorageRedisInterface @Inject()(@NamedCache("user-storage") cache: Cac
       upsertFromUserBank(user)
       user
     }
-  private def getUserSequence: Long = {
+  override def getUserSequence: Long = {
     val id = cache.get[Long](UserSequenceKey).getOrElse(0l) + 1
     cache.set(UserSequenceKey, id)
     id
   }
-  private def getUserBank: Map[Long, User] =
+  override def getUserBank: Map[Long, User] =
     cache.get[Map[Long, User]](UserBankKey).getOrElse(Map.empty[Long, User])
-  private def removeFromUserBank(user: User): Map[Long, User] = {
+  override def removeFromUserBank(user: User): Map[Long, User] = {
     val userBank = cache.get[Map[Long, User]](UserBankKey).getOrElse(Map.empty[Long, User]) - user.id
     cache.set(UserBankKey, userBank)
     userBank
   }
-  private def upsertFromUserBank(user: User): Map[Long, User] = {
+  override def upsertFromUserBank(user: User): Map[Long, User] = {
     val userBank = cache.get[Map[Long, User]](UserBankKey).getOrElse(Map.empty[Long, User]) + (user.id -> user)
     cache.set(UserBankKey, userBank)
     userBank
   }
 }
 
-trait UserStorageRedisInterfaceI {
+trait UserCacheStorageInterfaceI {
   def getUser(id: Long): Option[User]
   def getUserByUsername(username: String): Option[User]
   def getUserByUsernamePassword(username: String, password: String): Option[User]
   def removeUser(id: Long): Option[User]
   def upsertUser(user: User): User
+  def getUserSequence: Long
+  def getUserBank: Map[Long, User]
+  def removeFromUserBank(user: User): Map[Long, User]
+  def upsertFromUserBank(user: User): Map[Long, User]
 }

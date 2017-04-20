@@ -4,6 +4,7 @@ import org.mindrot.jbcrypt.BCrypt
 
 case class User (
   id: Long,
+  searches: Seq[String],
   username: String,
   password: String
 ) {
@@ -14,5 +15,5 @@ case class User (
 }
 
 object User {
-  def apply(username: String, password: String) = new User(0, username, BCrypt.hashpw(password, BCrypt.gensalt()))
+  def apply(username: String, password: String) = new User(0, Nil, username, BCrypt.hashpw(password, BCrypt.gensalt()))
 }

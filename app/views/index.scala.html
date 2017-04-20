@@ -2,7 +2,7 @@
 @(alertOpt: Option[Alert])
 @main(alertOpt){
   <div class="container">
-    <a href="/sign-in" class="pull-right" style="margin-top: 25px;">Sign-out</a>
+    <p class="pull-right" style="margin-top: 25px;"><a href="/profile">Profile</a> | <a href="/sign-in">Sign-out</a></p>
   </div>
   <div class="container vertical-center">
     <div class ="row">
@@ -11,17 +11,15 @@
       </h1>
     </div>
     <div class="row">
-      <form method="GET" action="/search">
-        <div class="form-group">
-          <input type="text" name="term" class="form-control">
+      <div class="form-group">
+        <input id="term" name="term" type="text" class="form-control">
+      </div>
+      <div class="parent-center-content">
+        <div class="horizontal-center">
+          <button id="search" class="btn btn-default">Search</button>
+          <button id="lucky" class="btn btn-default">I'm feeling lucky</button>
         </div>
-        <div class="parent-center-content">
-          <div class="horizontal-center">
-            <button class="btn btn-default">Search</button>
-            <button class="btn btn-default">I'm feeling lucky</button>
-          </div>
-        </div>
-      </form>
+      </div>
     </div>
   </div>
 }

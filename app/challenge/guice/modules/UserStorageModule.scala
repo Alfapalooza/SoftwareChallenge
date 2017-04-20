@@ -1,9 +1,9 @@
 package challenge.guice.modules
 
-import challenge.persistence.{UserStorageRedisInterface, UserStorageRedisInterfaceI}
+import challenge.persistence.{UserCacheStorageInterface, UserCacheStorageInterfaceI}
 import com.google.inject.AbstractModule
 
 class UserStorageModule extends AbstractModule {
   override def configure(): Unit =
-    bind(classOf[UserStorageRedisInterfaceI]).to(classOf[UserStorageRedisInterface])
+    bind(classOf[UserCacheStorageInterfaceI]).to(classOf[UserCacheStorageInterface])
 }

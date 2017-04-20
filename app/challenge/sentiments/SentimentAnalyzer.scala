@@ -28,7 +28,7 @@ object SentimentAnalyzer {
     case Some(text) if !text.isEmpty => summarizeSentiments(extractSentiments(input))
     case _ => throw new IllegalArgumentException("input can't be null or empty")
   }
-  def mainSentiment(sentiments: List[(Sentence, Sentiment)]): Sentiment = summarizeSentiments(sentiments)
+  def mainSentiment(sentiments: Seq[(Sentence, Sentiment)]): Sentiment = summarizeSentiments(sentiments)
 
   def extractSentiments(text: String): List[(Sentence, Sentiment)] = {
     val annotation: Annotation = pipeline.process(text)
@@ -39,7 +39,7 @@ object SentimentAnalyzer {
       .toList
   }
 
-  private def summarizeSentiments(sentiments: List[(Sentence, Sentiment)]) = {
+  private def summarizeSentiments(sentiments: Seq[(Sentence, Sentiment)]) = {
     val (_, sentiment) = sentiments.maxBy { case (sentence, _) => sentence.length }
     sentiment
   }
