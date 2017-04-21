@@ -43,7 +43,7 @@ Let us know how we can use it. You could either provide us with a zipped file co
 _I would have implemented a docker container for the project, again if I had more time. I realize Play has a built in mechanism to dockerize itself, but would need to find a way to include
 the redis server._
 
-## Installation
+### Installation
     1. Install 'Redis' (3.2.5 at time of writing): http://redis.io
         * For Win, follow the graphical installer, use the recommended settings. You can also install a graphical clients for interacting with the cache: https://redisdesktop.com/ (0.8.8 at time of writing)
         * For Mac / Linux, you'll need to build from sources, instructions here: http://redis.io/download#installation
@@ -51,7 +51,7 @@ the redis server._
         * The installer is a straight forward installer for Mac / Win / Linux, use the recommended settings.
     3. Install 'sbt': http://www.scala-sbt.org/download.html
   
-## Setting up and launching the application
+### Setting up and launching the application
     1. Start by cloning the application by opening a console
         * Windows, press the 'Windows' key, type 'cmd', hit 'Enter'
         * Mac, press the 'Command' + 'Space' key, type 'terminal', hit 'Enter'
