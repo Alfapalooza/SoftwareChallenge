@@ -11,7 +11,6 @@ import models.{Alert, Level}
 import play.api.mvc.{Call, Controller}
 
 import scala.concurrent.{ExecutionContext, Future}
-import scala.util.Random
 
 @Singleton
 class SoftwareChallengeController @Inject() (modules: ApplicationModulesI)(implicit ec: ExecutionContext) extends Controller with Context {
@@ -27,7 +26,7 @@ class SoftwareChallengeController @Inject() (modules: ApplicationModulesI)(impli
       }
     }
   }
-  def sentiments(_term: String) = AuthorizedAction(jwtConfig, failsafe)(ec).async { implicit request =>
+  def search(_term: String) = AuthorizedAction(jwtConfig, failsafe)(ec).async { implicit request =>
     val term = if (_term == "") "empty" else _term
     request.userId.fold(Future.successful(Redirect(failsafe.get))) { id =>
       modules.userStorageRedisInterface.getUser(id).fold(Future.successful(Redirect(failsafe.get))) { user =>
