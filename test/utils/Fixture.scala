@@ -1,5 +1,6 @@
 package utils
 
+import akka.stream.ActorMaterializer
 import challenge.guice.ApplicationModulesI
 import challenge.utils.test.RestServiceResponseProducer
 import challenge.utils.test.guice.ApplicationModulesTest
@@ -18,8 +19,9 @@ trait Fixture {
   }
 }
 
-object Fixture {
-  def apply(responses: (String, WSResponse)*) = new Fixture {
-    override protected val restServiceConsumer = new RestServiceResponseProducer(responses)
-  }
+class DefaultFixture(responses: Seq[(String, WSResponse)] = Nil) extends Fixture {
+  implicit val ec = scala.concurrent.ExecutionContext.Implicits.global
+  implicit val system = modules.playComponents.actorSystem
+  implicit val materializer = ActorMaterializer()
+  override protected def restServiceConsumer: RestServiceResponseProducer = new RestServiceResponseProducer(responses)
 }

@@ -5,7 +5,7 @@
 GET     /                           controllers.SoftwareChallengeController.index
 GET     /index                      controllers.SoftwareChallengeController.index
 GET     /profile                    controllers.SoftwareChallengeController.profile
-GET     /search                     controllers.SoftwareChallengeController.sentiments(term ?= "empty")
+GET     /search                     controllers.SoftwareChallengeController.search(term ?= "empty")
 GET     /lucky                      controllers.SoftwareChallengeController.lucky
 
 # Auth controller

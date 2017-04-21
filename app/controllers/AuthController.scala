@@ -36,7 +36,7 @@ class AuthController @Inject() (modules: ApplicationModulesI)(implicit ec: Execu
             val jwt = tokenizeUser(user)
             Redirect(redirect).withSession(jwtConfig.tokenName -> jwt)
           } else {
-            BadRequest(views.html.auth.signin(Some(Alert(Level.Error, s"Invalid password for user, ${credentials.username}")))).withNewSession
+            Forbidden(views.html.auth.signin(Some(Alert(Level.Error, s"Invalid password for user, ${credentials.username}")))).withNewSession
           }
         }
     )
