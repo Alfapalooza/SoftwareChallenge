@@ -18,8 +18,7 @@ Pick one of the available online API’s such as Twitter (https://dev.twitter.co
 
 User will insert text and click the button `Search` and your application will search tweets that contain submitted string. Note: it is only an example, go wilder than that :)
 
-_Implemented a very crude sentiment analysis using the 'Stanford NLP' library. By searching on 'Noodle', we'll fetch the top tweets, run sentiment analysis on each, and then run sentiment analysis on the tweets bunched together to get 
-a general consensus on sentiments. All of this is served up in an interface similar to Google's search interface_
+_Implemented a very crude sentiment analysis using the 'Stanford NLP' library. By searching on 'Noodle', we'll fetch the top tweets, run sentiment analysis on each, and then run sentiment analysis on the tweets bunched together to get a general consensus on sentiments. All of this is served up in an interface similar to Google's search interface_
 
 ## Challenge 4:
 Make your application secure and personalized by making people to have to sign-up / login. Bonus points, if users will be able to reset their passwords.
@@ -34,8 +33,7 @@ _Redis isn't idea to persist users lol, if I had more time to work on this I wou
 ## Challenge 6:
 Test your application.
 
-_There's still a few things left to figure out with Guice and how DI plays in to tests, such as the 'Crypto' class requiring a running Play application. Spinning up a Play application is relatively easy (compared to not, and creating the injector yourself),
-the reason this doesn't work is because we override 'WSClient' with our own implementation for test purposes, to achieve that our modules bundles requires some assisted injection (so a totally different type than what's injected in the controllers.)_
+_There's still a few things left to figure out with Guice and how DI plays in to tests, such as the 'Crypto' class requiring a running Play application. Spinning up a Play application for tests and fulfilling the need of the Crypto class is relatively easy (compared to not, and creating the injector yourself, which is what I ended up doing), the reason this doesn't work is because we override 'WSClient' with our own implementation for test purposes. To achieve that our modules bundles requires some assisted injection (a totally different type than what's injected in the controllers.)_
 
 ## Challenge 7:
 Let us know how we can use it. You could either provide us with a zipped file containing your solution or a link to your Github repository containing one.
