@@ -20,7 +20,7 @@ abstract class RestServiceExecutor (implicit val ec: ExecutionContext) {
       override protected val requestHolder: WSRequest = requestHook(request)
       override val timeout: FiniteDuration = _timeout.getOrElse(10 seconds)
       override protected def wrapRequest[A: ClassTag](body: Option[String])(req: => Future[WSResponse])(implicit ec: ExecutionContext, reads: Reads[A]): Future[A] = {
-        ServiceLog.logServiceResponse(serviceName, requestHolder, body)(req.map(responseHook)).map { response =>
+        ServiceLog.logRESTService(serviceName, requestHolder, body)(req.map(responseHook)).map { response =>
           response.validate[A] match {
             case JsSuccess(validated, _) => validated
             case JsError(errors) =>
